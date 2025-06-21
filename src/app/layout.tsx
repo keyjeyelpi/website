@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
+import DarkModeProvider from "@/services/providers/dark-mode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <DarkModeProvider>{children}</DarkModeProvider>
       </body>
     </html>
   );
