@@ -36,8 +36,8 @@ export default function Header() {
               className="flex items-center justify-center space-x-2 text-2xl font-bold py-6 text-center text-neutral-600 dark:text-gray-100 selection:bg-emerald-500 mr-10"
               href="/"
             >
-              <div className="relative h-10 w-10 md:h-8 md:w-8 bg-black dark:bg-white p-1 border border-slate-800  text-white flex items-center justify-center rounded-md text-sm antialiased">
-                <div className="absolute h-10 w-full bg-white/[0.2] -top-10 inset-x-0 rounded-full blur-xl"></div>
+              <div className="relative h-10 w-10 md:h-8 md:w-8 bg-black dark:bg-white p-1 flex items-center justify-center rounded-md text-sm antialiased">
+                <div className="absolute h-10 w-full bg-black/[0.2] -top-10 inset-x-0 rounded-full blur-xl"></div>
                 <div className="text-sm  text-emerald-500 relative z-20">
                   <img
                     alt="Logo"
@@ -46,7 +46,12 @@ export default function Header() {
                     height={50}
                     decoding="async"
                     data-nimg="1"
-                    src={systemTheme === "light" ? logoLight.src : logoDark.src}
+                    src={
+                      theme === "light" ||
+                      (theme === "system" && systemTheme === "light")
+                        ? logoLight.src
+                        : logoDark.src
+                    }
                   />
                 </div>
               </div>
@@ -97,6 +102,7 @@ export default function Header() {
           <div className="flex flex-1 items-center justify-end gap-2 sm:gap-2 md:justify-end">
             {socials.map((social) => (
               <a
+                key={JSON.stringify(social)}
                 target="__blank"
                 className="hover:text-foreground/80 text-foreground/60 text-sm font-medium transition-colors"
                 href={social.href}
