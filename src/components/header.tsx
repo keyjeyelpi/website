@@ -47,7 +47,6 @@ export default function Header() {
                     decoding="async"
                     data-nimg="1"
                     src={systemTheme === "light" ? logoLight.src : logoDark.src}
-                    style={{ color: "transparent" }}
                   />
                 </div>
               </div>
